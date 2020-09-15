@@ -1,9 +1,9 @@
 package toolkit
 
 import (
-	"github.com/keepchen/toolkit/cors"
-	"github.com/keepchen/toolkit/file"
-	"github.com/keepchen/toolkit/strings"
+	"toolkit/cors"
+	"toolkit/file"
+	"toolkit/strings"
 )
 
 //Toolkit 结构体
