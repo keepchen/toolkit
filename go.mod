@@ -1,4 +1,4 @@
-module toolkit
+module github.com/keepchen/toolkit
 
 go 1.15
 
