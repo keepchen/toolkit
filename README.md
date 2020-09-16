@@ -70,6 +70,6 @@ fileList, err := kit.Unzip("xx.zip", "/data/")
 ```golang
 ...
 var r *gin.Engine
-r.Use(kit.StartCors())
+r.Use(kit.StartCors("", nil))
 ...
 ```

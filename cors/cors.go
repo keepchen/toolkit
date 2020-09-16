@@ -22,7 +22,7 @@ func NewCors() *Cors {
 //
 //var r *gin.Engine
 //
-//r.Use(cors.NewCors().StartCors())
+//r.Use(cors.NewCors().StartCors("", nil))
 func (*Cors) StartCors(origin string, headers map[string]string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var method = c.Request.Method
