@@ -1,5 +1,7 @@
 # toolkit
 
+[![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/github.com/keepchen/toolkit?tab=overview)
+
 #### 简介
 
 封装了一些常用的工具包，逐步更新
