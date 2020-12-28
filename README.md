@@ -45,12 +45,6 @@ shuffleStr := kit.GenerateRandomString(5)
 ok := kit.ValidatePhone("13890012345")
 ```
 
-* MD5加密
-
-```golang
-hashedStr := kit.MD5encode("123")
-```
-
 ---
 文件
 
@@ -60,6 +54,29 @@ hashedStr := kit.MD5encode("123")
 
 ```
 fileList, err := kit.Unzip("xx.zip", "/data/")
+```
+
+---
+加密
+
+---
+
+* MD5加密
+
+```golang
+hashedStr := kit.MD5encode("123")
+```
+
+* sha256-rsa
+
+```golang
+c := kit.SetPublicKey(pubKey).SetPrivateKey(privateKey)
+
+//签名
+sign, err := c.SignUsingSha256WithRsa([]byte("test string"))
+
+//验签
+err := c.VerifySignUsingSha256WithRsa([]byte("test string"), sign)
 ```
 
 ---
