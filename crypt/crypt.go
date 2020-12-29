@@ -4,8 +4,8 @@ import "crypto/rsa"
 
 //Crypto 结构体
 type Crypto struct {
-	publicKey   *rsa.PublicKey
-	priviateKey *rsa.PrivateKey
+	publicKey  *rsa.PublicKey
+	privateKey *rsa.PrivateKey
 }
 
 //NewCrypto 实例化

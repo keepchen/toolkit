@@ -38,7 +38,7 @@ func TestSetPublicKey(t *testing.T) {
 
 func TestSetPrivateKey(t *testing.T) {
 	c := NewCrypto().SetPrivateKey(privateKey)
-	if c.priviateKey == nil {
+	if c.privateKey == nil {
 		t.Fatal("test failed")
 	}
 	t.Log("test passed")

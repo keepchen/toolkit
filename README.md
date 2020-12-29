@@ -50,7 +50,7 @@ ok := kit.ValidatePhone("13890012345")
 
 ---
 
-* 加压zip文件
+* 解压zip文件
 
 ```
 fileList, err := kit.Unzip("xx.zip", "/data/")

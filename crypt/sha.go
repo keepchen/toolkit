@@ -45,7 +45,7 @@ func (crypt *Crypto) SetPrivateKey(privateKey string) *Crypto {
 	}
 	private, err := parsePrivateKey([]byte(privateKey))
 	if err == nil {
-		crypt.priviateKey = private
+		crypt.privateKey = private
 	}
 
 	return crypt
@@ -57,7 +57,7 @@ func (crypt *Crypto) SignUsingSha256WithRsa(data []byte) ([]byte, error) {
 	h.Write(data)
 	d := h.Sum(nil)
 
-	return rsa.SignPKCS1v15(rand.Reader, crypt.priviateKey, crypto.SHA256, d)
+	return rsa.SignPKCS1v15(rand.Reader, crypt.privateKey, crypto.SHA256, d)
 }
 
 //VerifySignUsingSha256WithRsa 使用sha256-rsa算法进行签名验证
