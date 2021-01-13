@@ -8,7 +8,7 @@
 
 #### 安装
 
-```
+```shell
 go get github.com/keepchen/toolkit
 ```
 
@@ -41,7 +41,7 @@ shuffleStr := kit.GenerateRandomString(5)
 
 * 验证手机号码
 
-```
+```golang
 ok := kit.ValidatePhone("13890012345")
 ```
 
@@ -52,7 +52,7 @@ ok := kit.ValidatePhone("13890012345")
 
 * 解压zip文件
 
-```
+```golang
 fileList, err := kit.Unzip("xx.zip", "/data/")
 ```
 
