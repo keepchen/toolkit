@@ -71,6 +71,8 @@ hashedStr := kit.MD5encode("123")
 
 ```golang
 c := kit.SetPublicKey(pubKey).SetPrivateKey(privateKey)
+//or
+//c := kit.SetKey(pubKey, privateKey)
 
 //签名
 sign, err := c.SignUsingSha256WithRsa([]byte("test string"))

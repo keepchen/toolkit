@@ -19,12 +19,20 @@ const (
 	privateKeyEnd   = "\n-----END RSA PRIVATE KEY-----"
 )
 
+//SetKey 设置秘钥证书
+func (crypt *Crypto) SetKey(publicKey, privateKey string) *Crypto {
+	crypt = crypt.SetPublicKey(publicKey)
+	crypt = crypt.SetPrivateKey(privateKey)
+
+	return crypt
+}
+
 //SetPublicKey 设置公钥证书
 func (crypt *Crypto) SetPublicKey(pubKey string) *Crypto {
 	if !strings.HasPrefix(pubKey, pubKeyBegin) {
 		pubKey = pubKeyBegin + pubKey
 	}
-	if !strings.HasPrefix(pubKey, pubKeyEnd) {
+	if !strings.HasSuffix(pubKey, pubKeyEnd) {
 		pubKey = pubKey + pubKeyEnd
 	}
 	public, err := parsePublicKey([]byte(pubKey))
@@ -40,7 +48,7 @@ func (crypt *Crypto) SetPrivateKey(privateKey string) *Crypto {
 	if !strings.HasPrefix(privateKey, privateKeyBegin) {
 		privateKey = privateKeyBegin + privateKey
 	}
-	if !strings.HasPrefix(privateKey, privateKeyEnd) {
+	if !strings.HasSuffix(privateKey, privateKeyEnd) {
 		privateKey = privateKey + privateKeyEnd
 	}
 	private, err := parsePrivateKey([]byte(privateKey))
