@@ -62,7 +62,10 @@ func (crypt *Crypto) SetPrivateKey(privateKey string) *Crypto {
 //SignUsingSha256WithRsa 使用sha256-rsa算法进行签名
 func (crypt *Crypto) SignUsingSha256WithRsa(data []byte) ([]byte, error) {
 	h := sha256.New()
-	h.Write(data)
+	_, err := h.Write(data)
+	if err != nil {
+		return []byte{}, err
+	}
 	d := h.Sum(nil)
 
 	return rsa.SignPKCS1v15(rand.Reader, crypt.privateKey, crypto.SHA256, d)
@@ -71,7 +74,10 @@ func (crypt *Crypto) SignUsingSha256WithRsa(data []byte) ([]byte, error) {
 //VerifySignUsingSha256WithRsa 使用sha256-rsa算法进行签名验证
 func (crypt *Crypto) VerifySignUsingSha256WithRsa(data, sign []byte) error {
 	h := sha256.New()
-	h.Write(data)
+	_, err := h.Write(data)
+	if err != nil {
+		return err
+	}
 	d := h.Sum(nil)
 
 	return rsa.VerifyPKCS1v15(crypt.publicKey, crypto.SHA256, d, sign)
@@ -89,9 +95,9 @@ func parsePublicKey(pubKey []byte) (*rsa.PublicKey, error) {
 		if err != nil {
 			return nil, err
 		}
-		switch r.(type) {
+		switch r := r.(type) {
 		case *rsa.PublicKey:
-			return r.(*rsa.PublicKey), nil
+			return r, nil
 		default:
 			return nil, fmt.Errorf("unsupported public key type: %T", r)
 		}
@@ -101,8 +107,8 @@ func parsePublicKey(pubKey []byte) (*rsa.PublicKey, error) {
 }
 
 //解析私钥
-func parsePrivateKey(privatekey []byte) (*rsa.PrivateKey, error) {
-	block, _ := pem.Decode(privatekey)
+func parsePrivateKey(privateKey []byte) (*rsa.PrivateKey, error) {
+	block, _ := pem.Decode(privateKey)
 	if block == nil {
 		return nil, errors.New("can not parse private key,please check it")
 	}
